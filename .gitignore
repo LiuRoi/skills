@@ -1,0 +1,26 @@
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Test/Debug output
+*.test.js
+*.spec.js
+
+# Build output (if any skills compile)
+dist/
+build/
+
+# Local config overrides (if you have personal settings)
+*.local.*
