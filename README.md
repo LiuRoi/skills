@@ -15,6 +15,7 @@
 - [开发工具系列](#开发工具系列)
 - [设计工具系列](#设计工具系列)
 - [Design System 系列](#design-system-系列)
+- [Obsidian 系列](#obsidian-系列)
 
 ***
 
@@ -154,9 +155,14 @@ brainstorming → writing-plans → subagent-driven-development
 
 ## Obsidian 系列
 
-| Skill                     | 用途                        |
-| ------------------------- | ------------------------- |
+| Skill | 用途 |
+|-------|------|
+| **obsidian-cli** | Obsidian CLI 交互，读取、创建、搜索笔记和任务 |
 | **obsidian-sdk-patterns** | Obsidian 插件 TypeScript 模式 |
+| **obsidian-bases** | 创建和编辑 Obsidian Bases (.base 文件)，数据库视图 |
+| **obsidian-markdown** | Obsidian Flavored Markdown，wikilinks、callouts、embeds |
+| **json-canvas** | 创建和编辑 JSON Canvas 文件 (.canvas)，可视化画布 |
+| **defuddle** | 从网页提取干净 markdown，去除杂乱内容 |
 
 ***
 

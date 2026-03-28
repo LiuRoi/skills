@@ -8,6 +8,11 @@ All notable changes to this skills collection will be documented in this file.
 
 - **README.md** - Skills 使用索引，提供目录分类和功能说明
 - **.gitignore** - Git 忽略配置，过滤编辑器缓存和临时文件
+- **obsidian-cli** - Obsidian CLI 交互，读取、创建、搜索笔记和任务
+- **obsidian-bases** - 创建和编辑 Obsidian Bases (.base 文件)，数据库视图
+- **obsidian-markdown** - Obsidian Flavored Markdown，wikilinks、callouts、embeds
+- **json-canvas** - 创建和编辑 JSON Canvas 文件 (.canvas)，可视化画布
+- **defuddle** - 从网页提取干净 markdown，去除杂乱内容
 
 ### Categories
 
