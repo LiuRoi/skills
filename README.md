@@ -176,6 +176,36 @@ brainstorming → writing-plans → subagent-driven-development
 
 ***
 
+## GSAP 动画系列
+
+这一系列专注于**前端动画开发**，提供从基础动画到高级交互的完整解决方案。
+
+| Skill                    | 用途                                              |
+| ------------------------ | ----------------------------------------------- |
+| **gsap-core**            | **核心动画**：tweens 创建、easing 缓动、duration 时长、stagger 序列、transforms 变换、autoAlpha 透明度、matchMedia 响应式动画 |
+| **gsap-timeline**        | **时间轴编排**：timeline() 创建、position 参数定位、labels 标签、嵌套动画、播放控制（play/pause/reverse） |
+| **gsap-scrolltrigger**   | **滚动动画**：ScrollTrigger 驱动、pin 固定、scrub 滚动同步、触发器配置、响应式滚动动画、性能优化 |
+| **gsap-plugins**         | **插件扩展**：ScrollToPlugin 滚动定位、Flip 动画状态过渡、Draggable 拖拽、SplitText 文本分割、MorphSVG 路径变形、DrawSVG 绘图、MotionPath 路径动画等（全部免费） |
+| **gsap-utils**           | **工具函数**：clamp 限制、mapRange 映射、normalize 归一化、interpolate 插值、random 随机、snap 吸附、toArray 转数组、wrap 循环 |
+| **gsap-react**           | **React 集成**：useGSAP hook、refs 引用、gsap.context() 作用域、SSR 兼容、组件卸载清理 |
+| **gsap-performance**     | **性能优化**：transforms 使用、will-change 提示、批处理动画、ScrollTrigger 优化、60fps 保证 |
+| **gsap-frameworks**      | **框架集成**：Vue/Svelte/Nuxt 生命周期管理、onMounted/onUnmounted 动画创建/销毁、选择器作用域、清理策略 |
+
+**为什么选择 GSAP**：
+- **免费全家桶**：Webflow 收购后所有插件（包括 formerly Club-only 的 SplitText、MorphSVG 等）免费商用
+- **统一安装**：`npm install gsap` 即可，无需 `.npmrc`、认证 token 或私有仓库
+- **跨框架**：React、Vue、Svelte、原生 JS 通用
+- **专业级**：60fps 性能、精确控制、丰富的 easing、时间轴编排、滚动动画
+
+**典型场景**：
+- 页面过渡动画、元素进入/退出动画
+- 滚动触发的交互动画、视差效果
+- 表单交互、按钮悬停、加载动画
+- 复杂的时间轴序列动画
+- SVG 路径动画、文本分割动画
+
+***
+
 ## Skill 编写系列
 
 | Skill              | 用途             |
