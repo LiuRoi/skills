@@ -1,225 +1,627 @@
-# Skills 使用索引
+# Skill 仓库使用指南
 
-> 这是我的个人 skill 收藏，针对我的工作流程和编码习惯优化。
+本仓库包含 30+ 个 Skill，覆盖前端开发、UI 设计、动画、测试、文档、Obsidian 等多个领域。每个 Skill 都是独立的指令集，在对应场景下自动激活。
 
-***
+---
 
-## 目录
+## 一、前端开发核心
 
-- [Superpowers 系列](#superpowers-系列-核心工作流)
-- [TDD / 测试系列](#tdd--测试系列)
-- [前端设计系列](#前端设计系列)
-- [Impeccable 设计系列](#impeccable-设计系列)
-- [前端框架系列](#前端框架系列)
-- [代码质量系列](#代码质量系列)
-- [文档工具系列](#文档工具系列)
-- [开发工具系列](#开发工具系列)
-- [设计工具系列](#设计工具系列)
-- [Design System 系列](#design-system-系列)
-- [Obsidian 系列](#obsidian-系列)
+### 1. Vue 生态
 
-***
+#### vue
+Vue 3.5+ 核心开发指南，覆盖响应式系统、组件通信、生命周期、TypeScript 集成。
 
-## Superpowers 系列（核心工作流）
+**工作流：**
+- 新建组件时，使用 `<script setup lang="ts">` + `ref()` 声明状态
+- 需要复用逻辑时，提取为 composable（参考 vueuse-functions）
+- 父子通信用 `defineProps` + `defineEmits`，v-model 用 `defineModel()`
 
-这一系列是我的**主力工作流**，从想法到上线全覆盖。
-
-| Skill                              | 用途                                |
-| ---------------------------------- | --------------------------------- |
-| **using-superpowers**              | 每次对话开始时调用，确立 skill 调用规范           |
-| **brainstorming**                  | 任何创意工作之前必须使用，探索意图、需求、设计           |
-| **writing-plans**                  | 将设计转化为可执行的任务清单                    |
-| **subagent-driven-development**    | 子 agent 驱动开发，每任务配 spec+code 两阶段审查 |
-| **executing-plans**                | 批量执行计划，有检查点，适合跨 session           |
-| **finishing-a-development-branch** | 完成开发后的分支处理：merge、PR 或清理           |
-| **verification-before-completion** | 完成前必须验证，证据优于断言                    |
-| **requesting-code-review**         | 请求代码审查                            |
-| **receiving-code-review**          | 接收审查反馈，验证后实施，不盲从                  |
-| **dispatching-parallel-agents**    | 并行分发独立任务                          |
-| **using-git-worktrees**            | 创建隔离的工作空间                         |
-
-**典型工作流**：
-
+**触发方式：**
 ```
-brainstorming → writing-plans → subagent-driven-development
-                                              ↓
-                              using-git-worktrees (隔离环境)
-                                              ↓
-                              verification-before-completion
-                                              ↓
-                              requesting-code-review / receiving-code-review
-                                              ↓
-                              finishing-a-development-branch
+"帮我写一个 Vue 组件"
+"这个 ref 为什么不响应"
+"watch 和 watchEffect 有什么区别"
 ```
 
-***
+#### vue-best-practices
+Vue + TypeScript 类型安全最佳实践，解决模板报错、props 提取、CSS Modules 等常见问题。
 
-## TDD / 测试系列
+**工作流：**
+- 遇到 `vue-tsc` 模板报错 → 自动应用 strict-templates 规则
+- 需要包装组件继承 props → 使用 extract-component-props 模式
+- 遇到 Volar 升级问题 → 查阅 volar-3-breaking-changes
 
-| Skill                       | 用途                                  |
-| --------------------------- | ----------------------------------- |
-| **test-driven-development** | 测试优先，写测试再看它失败，再写代码通过                |
-| **tdd-workflow**            | 中文版 TDD 工作流，80%+ 覆盖率要求              |
-| **systematic-debugging**    | 系统调试，发现 bug 先找根因再修                  |
-| **frontend-testing**        | 前端测试，Vitest + React Testing Library |
-
-**规则**：`NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST`
-
-***
-
-## 前端设计系列
-
-创建独特、生产级的前端界面。
-
-| Skill | 用途 |
-|-------|------|
-| **frontend-design** | 创建独特、生产级的前端界面 |
-| **frontend-slides** | 创建动画丰富的 HTML 演示文稿 |
-| **web-design-guidelines** | Web 界面合规性审查 |
-
-***
-
-## Impeccable 设计系列
-
-这一系列确保我的设计**从一开始就正确**。
-
-| Skill | 用途 |
-|-------|------|
-| **teach-impeccable** | 一次性建立项目设计上下文，持久化到配置文件 |
-| **extract** | 从现有设计提取可复用的设计系统组件和模式 |
-| **overdrive** | 超越常规限制，技术上雄心勃勃的实现 |
-| **polish** | 最终质量打磨，修复间距、对齐、细节问题 |
-| **audit** | 技术审计，评分 5 维度 + P0-P3 严重等级 |
-| **critique** | 体验评估，基于 Nielsen 10 启发式原则 |
-| **normalize** | 规范化设计以匹配设计系统 |
-| **harden** | 增强界面韧性：错误处理、i18n、边界情况 |
-| **optimize** | 性能优化：加载速度、渲染、动画、图片 |
-| **adapt** | 适配不同屏幕、设备、平台 |
-| **clarify** | 改进不明确的 UX copy、标签、说明 |
-| **distill** | 精简设计到核心本质 |
-| **bolder** | 放大安全或无聊的设计 |
-| **quieter** | 降低过于激进的设计强度 |
-| **typeset** | 改进字体、层级、大小 |
-| **arrange** | 改进布局、间距、视觉节奏 |
-| **onboard** | 引导体验：空状态、首次使用、 onboarding |
-| **delight** | 添加惊喜、人格化元素 |
-| **colorize** | 添加战略性色彩 |
-| **animate** | 交互动画、微交互、motion 效果 |
-
-这套命令体系形成了一个完整的设计质量闭环：从技术审计到体验评估，再到精细化打磨和体验增强，每个环节都有对应的专用命令。
-
+**触发方式：**
 ```
-/teach-impeccable（项目配置）
-     ↓
- /extract（构建设计系统）
-     ↓
- /audit → /normalize + /harden + /optimize + /adapt + /clarify
-     ↓
- /critique → /polish + /distill + /bolder/quieter + /typeset + /arrange
-     ↓
- /enhance（增强）→ /onboard + /delight + /colorize + /animate + /overdrive
+"Vue 模板报 undefined component"
+"怎么提取子组件的 props 类型"
+"CSS Modules 类型报错"
 ```
 
-***
+#### pinia
+Vue 官方状态管理库，支持 Setup Stores、TypeScript、SSR。
 
-## 前端框架系列
+**工作流：**
+- 定义 Store：`defineStore('id', () => { const count = ref(0); return { count } })`
+- 组件中使用：`const store = useCounterStore()`，`storeToRefs(store)` 解构保持响应式
+- 测试时用 `@pinia/testing` mock store
 
-| Skill                  | 用途                              |
-| ---------------------- | ------------------------------- |
-| **vue**                | Vue 3 + Composition API 最佳实践    |
-| **vue-best-practices** | Vue 3 + TypeScript + Volar 类型检查 |
-| **vueuse-functions**   | VueUse 组合式函数应用                  |
-| **pinia**              | Pinia 状态管理                      |
-| **vite**               | Vite 构建工具配置                     |
+**触发方式：**
+```
+"怎么定义 Pinia store"
+"store 解构后失去响应式"
+"Pinia 在 SSR 中怎么用"
+```
 
-***
+#### vueuse-functions
+VueUse 组合式函数决策指南，覆盖 200+ 个常用工具函数。
 
-## 代码质量系列
+**工作流：**
+- 需要本地存储 → `useLocalStorage` / `useStorage`
+- 需要监听元素可见性 → `useIntersectionObserver`
+- 需要防抖节流 → `useDebounceFn` / `useThrottleFn`
+- 需要暗黑模式 → `useDark` / `useColorMode`
 
-| Skill                               | 用途                          |
-| ----------------------------------- | --------------------------- |
-| **code-review-excellence**          | 全面的代码审查指导                   |
-| **code-documentation-doc-generate** | API 文档、架构图、用户指南生成           |
-| **update-docs**                     | 代码变更后更新文档                   |
-| **changelog-generator**             | 从 git commits 自动生成用户友好的变更日志 |
+**触发方式：**
+```
+"怎么监听元素进入视口"
+"Vue 里怎么做防抖"
+"实现暗黑模式切换"
+```
 
-***
+#### vite
+Vite 6.x 构建工具配置指南，覆盖开发服务器、生产构建、插件系统、SSR。
 
-## 文档工具系列
+**工作流：**
+- 配置别名/代理 → `vite.config.ts` 中配置 `resolve.alias` / `server.proxy`
+- 环境变量 → `.env` 文件 + `import.meta.env`
+- 构建库 → 使用 Library Mode 配置 `build.lib`
 
-| Skill                 | 用途                        |
-| --------------------- | ------------------------- |
-| **docx**              | Word 文档 (.docx) 的创建、编辑、转换 |
-| **readme-generation** | README 文件生成               |
+**触发方式：**
+```
+"Vite 怎么配置代理"
+"环境变量不生效"
+"打包优化怎么做"
+```
 
-***
+---
 
-## 开发工具系列
+### 2. 动画开发（GSAP 系列）
 
-| Skill                     | 用途              |
-| ------------------------- | --------------- |
-| **chrome-devtools**       | 浏览器调试、性能分析、网络请求 |
-| **jira-workflow-creator** | 企业级 Jira 工作流创建  |
+共 8 个 Skill，覆盖 GSAP 完整生态。按使用顺序排列：
 
-***
+#### gsap-core
+GSAP 核心动画引擎。单元素动画、缓动函数、stagger、响应式动画。
 
-## Obsidian 系列
+**工作流：**
+```javascript
+// 基础动画
+gsap.to(".box", { x: 100, duration: 1, ease: "power3.out" })
 
-| Skill | 用途 |
-|-------|------|
-| **obsidian-cli** | Obsidian CLI 交互，读取、创建、搜索笔记和任务 |
-| **obsidian-sdk-patterns** | Obsidian 插件 TypeScript 模式 |
-| **obsidian-bases** | 创建和编辑 Obsidian Bases (.base 文件)，数据库视图 |
-| **obsidian-markdown** | Obsidian Flavored Markdown，wikilinks、callouts、embeds |
-| **json-canvas** | 创建和编辑 JSON Canvas 文件 (.canvas)，可视化画布 |
-| **defuddle** | 从网页提取干净 markdown，去除杂乱内容 |
+// 从隐藏状态进入
+gsap.from(".item", { opacity: 0, y: 20, stagger: 0.1 })
 
-***
+// 响应式 + 减少动画偏好
+let mm = gsap.matchMedia()
+mm.add("(prefers-reduced-motion: reduce)", () => {
+  gsap.set(".box", { x: 100 }) // 直接设置，无动画
+})
+```
 
-## GSAP 动画系列
+**触发方式：**
+```
+"做个元素飞入动画"
+"推荐一个 JS 动画库"
+"GSAP 怎么用"
+```
 
-这一系列专注于**前端动画开发**，提供从基础动画到高级交互的完整解决方案。
+#### gsap-timeline
+多步骤动画编排，控制时间线、label、嵌套。
 
-| Skill                    | 用途                                              |
-| ------------------------ | ----------------------------------------------- |
-| **gsap-core**            | **核心动画**：tweens 创建、easing 缓动、duration 时长、stagger 序列、transforms 变换、autoAlpha 透明度、matchMedia 响应式动画 |
-| **gsap-timeline**        | **时间轴编排**：timeline() 创建、position 参数定位、labels 标签、嵌套动画、播放控制（play/pause/reverse） |
-| **gsap-scrolltrigger**   | **滚动动画**：ScrollTrigger 驱动、pin 固定、scrub 滚动同步、触发器配置、响应式滚动动画、性能优化 |
-| **gsap-plugins**         | **插件扩展**：ScrollToPlugin 滚动定位、Flip 动画状态过渡、Draggable 拖拽、SplitText 文本分割、MorphSVG 路径变形、DrawSVG 绘图、MotionPath 路径动画等（全部免费） |
-| **gsap-utils**           | **工具函数**：clamp 限制、mapRange 映射、normalize 归一化、interpolate 插值、random 随机、snap 吸附、toArray 转数组、wrap 循环 |
-| **gsap-react**           | **React 集成**：useGSAP hook、refs 引用、gsap.context() 作用域、SSR 兼容、组件卸载清理 |
-| **gsap-performance**     | **性能优化**：transforms 使用、will-change 提示、批处理动画、ScrollTrigger 优化、60fps 保证 |
-| **gsap-frameworks**      | **框架集成**：Vue/Svelte/Nuxt 生命周期管理、onMounted/onUnmounted 动画创建/销毁、选择器作用域、清理策略 |
+**工作流：**
+```javascript
+const tl = gsap.timeline({ defaults: { duration: 0.5 } })
+tl.to(".a", { x: 100 }, 0)           // 0秒开始
+tl.to(".b", { y: 50 }, "+=0.3")      // 延迟0.3秒
+tl.to(".c", { opacity: 0 }, "<0.2")  // 上一个开始后再过0.2秒
+```
 
-**为什么选择 GSAP**：
-- **免费全家桶**：Webflow 收购后所有插件（包括 formerly Club-only 的 SplitText、MorphSVG 等）免费商用
-- **统一安装**：`npm install gsap` 即可，无需 `.npmrc`、认证 token 或私有仓库
-- **跨框架**：React、Vue、Svelte、原生 JS 通用
-- **专业级**：60fps 性能、精确控制、丰富的 easing、时间轴编排、滚动动画
+**触发方式：**
+```
+"多个动画按顺序执行"
+"怎么控制动画时间线"
+```
 
-**典型场景**：
-- 页面过渡动画、元素进入/退出动画
-- 滚动触发的交互动画、视差效果
-- 表单交互、按钮悬停、加载动画
-- 复杂的时间轴序列动画
-- SVG 路径动画、文本分割动画
+#### gsap-scrolltrigger
+滚动驱动动画，pin、scrub、batch、水平滚动。
 
-***
+**工作流：**
+```javascript
+gsap.to(".box", {
+  x: 500,
+  scrollTrigger: {
+    trigger: ".box",
+    start: "top center",
+    end: "bottom center",
+    scrub: true,
+    pin: false
+  }
+})
+```
 
-## Skill 编写系列
+**触发方式：**
+```
+"滚动时触发动画"
+"实现视差滚动效果"
+"元素固定在屏幕上"
+```
 
-| Skill              | 用途             |
-| ------------------ | -------------- |
-| **writing-skills** | 创建、编辑、验证 skill |
+#### gsap-plugins
+GSAP 插件系统：Flip、Draggable、SplitText、MorphSVG、DrawSVG 等。
 
-***
+**工作流：**
+- 布局变化动画 → `Flip.getState()` → DOM 变化 → `Flip.from()`
+- 文字逐字动画 → `SplitText.create(".heading", { type: "chars" })`
+- SVG 路径动画 → `DrawSVGPlugin` + `drawSVG: "0% 100%"`
+- 拖拽交互 → `Draggable.create(".box", { type: "x,y", inertia: true })`
 
-## 使用提示
+**触发方式：**
+```
+"文字逐个出现"
+"SVG 路径绘制动画"
+"拖拽元素"
+```
 
-1. **每次对话开始**：先调用 `using-superpowers`，它会告诉你哪些 skill 适用于当前任务
-2. **创意工作**：先 `brainstorming`，不跳过
-3. **实现功能**：`teach-impeccable`（如果是 UI）→ `frontend-design` → `polish`
-4. **调试问题**：`systematic-debugging`，先找根因
-5. **写测试**：`test-driven-development`，测试优先
-6. **提交代码**：`verification-before-completion` 确保验证通过后再声称完成
+#### gsap-react / gsap-frameworks
+React/Vue/Svelte 中集成 GSAP，处理生命周期和清理。
 
+**React 工作流：**
+```javascript
+import { useGSAP } from "@gsap/react"
+const container = useRef(null)
+useGSAP(() => {
+  gsap.to(".box", { x: 100 })
+}, { scope: container })
+```
+
+**Vue 工作流：**
+```javascript
+onMounted(() => {
+  const ctx = gsap.context(() => {
+    gsap.to(".box", { x: 100 })
+  }, container.value)
+})
+onUnmounted(() => ctx?.revert())
+```
+
+**触发方式：**
+```
+"React 里用 GSAP"
+"Vue 组件卸载后动画还在跑"
+```
+
+#### gsap-performance / gsap-utils
+性能优化和工具函数。`gsap.quickTo` 高频更新，`gsap.utils.clamp/mapRange/snap` 数值处理。
+
+---
+
+### 3. UI 设计与实现
+
+#### frontend-design
+生产级前端界面设计，避免"AI 感"，追求独特视觉风格。
+
+**工作流：**
+1. 先确认设计上下文（目标用户、品牌调性）
+2. 选择大胆的设计方向（极简/极繁/复古未来/工业风等）
+3. 使用 OKLCH 色彩、独特字体搭配、不对称布局
+4. 添加有意义的动效（入场动画、状态过渡）
+
+**触发方式：**
+```
+"设计一个 landing page"
+"这个页面太普通了，改得有设计感"
+"帮我做一个产品官网"
+```
+
+#### impeccable
+前端界面全面优化工具，包含 20+ 子命令。
+
+**核心命令：**
+| 命令 | 用途 |
+|------|------|
+| `craft [功能]` | 端到端构建功能 |
+| `audit [目标]` | 技术质量检查（a11y、性能、响应式）|
+| `polish [目标]` | 上线前最终打磨 |
+| `animate [目标]` | 添加 purposeful 动画 |
+| `colorize [目标]` | 为单色 UI 添加策略性色彩 |
+| `layout [目标]` | 修复间距和视觉层次 |
+| `harden [目标]` | 生产化：错误处理、i18n、边界情况 |
+
+**工作流示例（优化现有页面）：**
+```
+1. 运行 audit 检查问题
+2. 根据报告用 layout 修复间距
+3. 用 animate 添加动效
+4. 用 polish 最终检查
+```
+
+**触发方式：**
+```
+"/impeccable audit 首页"
+"/impeccable polish 登录页"
+"这个设计需要优化"
+```
+
+#### pencil-ui-design
+使用 Pencil MCP 创建工业级 UI 设计稿。
+
+**工作流：**
+1. 设置设计系统变量（颜色、字体、间距）
+2. 创建可复用组件（Button、Card、Input）
+3. 用 `I()` 插入组件，`U()` 更新属性，`G()` 生成图片
+4. 截图验证设计效果
+
+**触发方式：**
+```
+"用 Pencil 设计一个 APP 界面"
+"创建设计系统组件"
+```
+
+---
+
+### 4. 测试与质量
+
+#### frontend-testing
+Dify 前端测试规范，Vitest + React Testing Library。
+
+**工作流：**
+1. 分析组件复杂度：`pnpm analyze-component <路径>`
+2. 按复杂度排序：工具函数 → Hooks → 简单组件 → 复杂组件
+3. 逐个编写测试，每个文件覆盖：渲染、Props、交互、边界情况
+4. 运行测试：`pnpm test <文件>.spec.tsx`
+5. 目标覆盖率：函数/语句 100%，分支/行 >95%
+
+**触发方式：**
+```
+"给这个组件写测试"
+"测试覆盖率不够"
+"Vitest 怎么用"
+```
+
+#### tdd-workflow
+测试驱动开发工作流，强制先写测试再实现。
+
+**工作流：**
+1. 编写用户故事
+2. 生成测试用例（正常路径 + 边界情况 + 错误路径）
+3. 运行测试（应该失败）
+4. 实现代码使测试通过
+5. 重构，保持测试通过
+6. 验证覆盖率 >80%
+
+**触发方式：**
+```
+"用 TDD 开发这个功能"
+"先写测试"
+```
+
+#### code-review-excellence
+代码审查最佳实践，支持 React/Vue/Rust/TypeScript/Python/Java/C/C++。
+
+**工作流：**
+1. 上下文收集：PR 描述、改动范围、CI 状态
+2. 高层审查：架构设计、性能、测试策略
+3. 逐行审查：逻辑正确性、安全、可维护性
+4. 总结反馈：标记阻塞/重要/建议级别
+
+**触发方式：**
+```
+"帮我 review 这段代码"
+"这个 PR 有什么问题"
+```
+
+---
+
+## 二、内容创作与文档
+
+### 1. 演示与文档
+
+#### frontend-slides
+零依赖 HTML 演示文稿，支持 PPT 转换。
+
+**工作流：**
+1. 确定模式：新建 / PPT 转换 / 优化现有
+2. 内容发现：确认用途（路演/教学/会议）、页数、内容就绪度
+3. 风格探索：生成 3 个预览文件供选择
+4. 生成完整演示文稿（每页必须适配视口，无滚动）
+5. 键盘/触摸/滚轮导航
+
+**触发方式：**
+```
+"做一个 pitch deck"
+"把 PPT 转成网页版"
+"生成技术分享幻灯片"
+```
+
+#### docx
+Word 文档创建与编辑。
+
+**工作流：**
+- 新建文档 → 使用 `docx-js` 库，设置页面尺寸（US Letter: 12240x15840 DXA）
+- 编辑现有文档 → 解压 → 编辑 XML → 打包
+- 关键规则：表格需双宽度（columnWidths + cell width）、使用 DXA 单位、避免 unicode 项目符号
+
+**触发方式：**
+```
+"生成一个 Word 文档"
+"编辑这个 docx 文件"
+```
+
+#### readme-generation
+README 最佳实践。
+
+**工作流：**
+1. 标题 + 一句话描述
+2. 徽章（CI、版本、许可证）
+3. 安装步骤（含前置条件）
+4. 使用示例（从简单到复杂）
+5. 配置变量表格
+6. 贡献指南 + 许可证
+
+**触发方式：**
+```
+"帮我写 README"
+"优化项目文档"
+```
+
+#### code-documentation-doc-generate
+从代码自动生成文档。
+
+**工作流：**
+1. 识别文档类型（API/架构/用户指南）
+2. 从代码、配置、注释中提取信息
+3. 生成一致术语和结构的文档
+4. 添加自动化验证
+
+**触发方式：**
+```
+"给这个项目生成文档"
+"自动生成 API 文档"
+```
+
+#### update-docs
+Next.js 文档更新工作流。
+
+**工作流：**
+1. `git diff canary...HEAD --stat` 查看改动
+2. 映射源码改动到文档路径
+3. 按模板更新或新建文档
+4. `pnpm lint` 验证格式
+
+**触发方式：**
+```
+"这些改动需要更新文档吗"
+"同步代码和文档"
+```
+
+#### changelog-generator
+从 Git 提交生成用户友好的更新日志。
+
+**工作流：**
+1. 扫描指定时间范围的 Git 历史
+2. 分类：新功能、改进、修复、破坏性变更
+3. 将技术提交翻译为用户语言
+4. 过滤内部提交（重构、测试等）
+
+**触发方式：**
+```
+"生成本周更新日志"
+"写版本发布说明"
+```
+
+---
+
+## 三、Obsidian 生态
+
+### 1. 笔记与内容
+
+#### obsidian-markdown
+Obsidian 专属 Markdown 语法。
+
+**核心语法：**
+```markdown
+[[笔记名]]                    # 内部链接
+[[笔记名|显示文本]]            # 自定义显示
+![[图片.png|300]]             # 嵌入内容
+> [!note] 标题               # Callout
+%%隐藏内容%%                 # 注释
+==高亮文本==                 # 高亮
+```
+
+**触发方式：**
+```
+"创建 Obsidian 笔记"
+"wikilink 怎么用"
+```
+
+#### obsidian-cli
+通过命令行操作 Obsidian 仓库。
+
+**常用命令：**
+```bash
+obsidian read file="笔记名"
+obsidian create name="新笔记" content="# 标题"
+obsidian append file="笔记名" content="追加内容"
+obsidian search query="关键词" limit=10
+obsidian daily:append content="- [ ] 任务"
+obsidian property:set name="status" value="done"
+```
+
+**开发调试：**
+```bash
+obsidian plugin:reload id=my-plugin
+obsidian dev:errors
+obsidian dev:screenshot path=screenshot.png
+```
+
+**触发方式：**
+```
+"用 CLI 创建 Obsidian 笔记"
+"调试 Obsidian 插件"
+```
+
+### 2. 数据与可视化
+
+#### obsidian-bases
+数据库视图（.base 文件），类似 Notion 数据库。
+
+**工作流：**
+1. 创建 `.base` 文件，定义 YAML 结构
+2. 设置 `filters` 筛选笔记（按标签、文件夹、属性）
+3. 定义 `formulas` 计算字段
+4. 配置 `views`：table / cards / list / map
+
+**示例：**
+```yaml
+filters:
+  and:
+    - file.hasTag("task")
+formulas:
+  days_until_due: 'if(due, (date(due) - today()).days, "")'
+views:
+  - type: table
+    name: "待办任务"
+    order: [file.name, status, formula.days_until_due]
+```
+
+**触发方式：**
+```
+"创建一个任务追踪 base"
+"Obsidian 数据库怎么用"
+```
+
+#### json-canvas
+可视化画布（.canvas 文件），思维导图、流程图。
+
+**工作流：**
+1. 创建 `.canvas` 文件：`{"nodes": [], "edges": []}`
+2. 添加节点（text/file/link/group），生成 16 位 hex ID
+3. 添加边连接节点（`fromNode` → `toNode`）
+4. 验证：ID 唯一、边引用有效
+
+**触发方式：**
+```
+"创建思维导图"
+"做一个流程图"
+```
+
+### 3. 插件开发
+
+#### obsidian-sdk-patterns
+Obsidian 插件开发模式（TypeScript）。
+
+**核心模式：**
+- Settings Pattern：类型安全的配置管理
+- Service Layer：Vault 操作封装
+- Event Manager：事件注册与自动清理
+- Command Builder：流式命令注册
+- Async Queue：批量操作防竞态
+
+**触发方式：**
+```
+"Obsidian 插件最佳实践"
+"怎么管理插件配置"
+```
+
+---
+
+## 四、工具与调试
+
+#### chrome-devtools
+浏览器调试、性能分析、自动化。
+
+**工作流：**
+- 元素定位 → `take_snapshot` 获取 uid → `click(uid)` / `fill(uid)`
+- 错误排查 → `list_console_messages` + `list_network_requests`
+- 性能分析 → `performance_start_trace` → `performance_analyze_insight`
+
+**触发方式：**
+```
+"调试这个页面"
+"分析页面加载性能"
+"截图看看效果"
+```
+
+#### defuddle
+从网页提取干净内容（去广告、去导航）。
+
+**使用：**
+```bash
+defuddle parse <url> --md           # Markdown 输出
+defuddle parse <url> --md -o out.md # 保存文件
+defuddle parse <url> -p title       # 提取标题
+```
+
+**触发方式：**
+```
+"提取这个网页内容"
+"把文章转成 Markdown"
+```
+
+#### web-design-guidelines
+检查 UI 是否符合 Web Interface Guidelines。
+
+**工作流：**
+1. 从 GitHub 获取最新指南
+2. 读取指定文件
+3. 逐条检查规则
+4. 输出 `file:line` 格式的问题列表
+
+**触发方式：**
+```
+"检查这个页面的可访问性"
+"review 我的 UI"
+```
+
+---
+
+## 五、企业工作流
+
+#### jira-workflow-creator
+Jira 工作流创建辅助。
+
+**触发方式：**
+```
+"创建 Jira 工作流"
+"jira workflow creator"
+```
+
+---
+
+## 快速参考：按场景选 Skill
+
+| 你想做什么 | 使用 Skill |
+|-----------|-----------|
+| 写 Vue 组件 | vue + vue-best-practices |
+| 管理 Vue 状态 | pinia |
+| 需要 Vue 工具函数 | vueuse-functions |
+| 配置构建工具 | vite |
+| 做网页动画 | gsap-core → gsap-timeline → gsap-scrolltrigger |
+| React 里用动画 | gsap-react |
+| Vue 里用动画 | gsap-frameworks |
+| 设计产品界面 | frontend-design / impeccable |
+| 用 Pencil 画设计稿 | pencil-ui-design |
+| 写前端测试 | frontend-testing / tdd-workflow |
+| 代码审查 | code-review-excellence |
+| 做演示文稿 | frontend-slides |
+| 写 README | readme-generation |
+| 生成更新日志 | changelog-generator |
+| 操作 Obsidian | obsidian-cli / obsidian-markdown |
+| Obsidian 数据库 | obsidian-bases |
+| Obsidian 画布 | json-canvas |
+| 开发 Obsidian 插件 | obsidian-sdk-patterns |
+| 调试网页 | chrome-devtools |
+| 提取网页内容 | defuddle |
+| 检查 UI 规范 | web-design-guidelines |
+| 创建 Word 文档 | docx |
+| 更新 Next.js 文档 | update-docs |
