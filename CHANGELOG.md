@@ -4,6 +4,11 @@ All notable changes to this skills collection will be documented in this file.
 
 ## [Unreleased]
 
+### Added - 2026-06-24
+
+- **guizang-ppt** - 杂志风网页 PPT 生成，单 HTML 文件，含 WebGL 背景、两种风格（电子杂志/瑞士国际主义）、5 套预设主题色
+- **html-ppt** - HTML PPT Studio，36 个主题、31 种布局、15 个完整模板、演讲者模式（逐字稿+计时器）
+
 ### Added
 
 - **README.md** - 全新的新手友好使用指南，包含完整的 skills 分类、使用场景、典型用法和新手教程

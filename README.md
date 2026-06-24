@@ -1,6 +1,6 @@
 # Skill 仓库使用指南
 
-本仓库包含 **36 个 Skill**，覆盖前端开发、UI 设计、动画、测试、文档、Obsidian、工作流等多个领域。每个 Skill 都是独立的指令集，在对应场景下自动激活。
+本仓库包含 **38 个 Skill**，覆盖前端开发、UI 设计、动画、测试、文档、Obsidian、工作流等多个领域。每个 Skill 都是独立的指令集，在对应场景下自动激活。
 
 ---
 
@@ -404,6 +404,74 @@ impeccable 强制禁止以下 AI 常见反模式：
 
 ---
 
+### guizang-ppt
+**杂志风网页 PPT 生成**，单 HTML 文件，含 WebGL 背景。
+
+**两种风格：**
+| 风格 | 特点 | 适用场景 |
+|------|------|----------|
+| **A · 电子杂志风** | WebGL 流体背景、衬线标题、暖色调 | 人文分享、行业观察、商业发布 |
+| **B · 瑞士国际主义** | 网格点阵背景、无衬线、高对比功能色 | 科技产品、数据汇报、技术分享 |
+
+**核心能力：**
+- 横向翻页（键盘 ← →、滚轮、触屏、ESC 索引）
+- WebGL 背景（流体/等高线/色散/网格点阵）
+- 5 套预设主题色（墨水经典/靛蓝瓷/森林墨/牛皮纸/沙丘）
+- Lucide 图标、Motion One 入场动效
+
+**工作流：**
+```
+1. 需求澄清 → 风格选择、受众、时长、素材
+2. 拷贝模板 → assets/template.html 或 template-swiss.html
+3. 选定主题色 → 从 5 套预设中选择
+4. 填充内容 → 按 layouts.md 版式填充
+5. 添加图片 → images/ 文件夹，命名规范 {页号}-{语义}.{ext}
+```
+
+**触发方式：**
+```
+"做一份杂志风 PPT"
+"瑞士国际主义风格的演示文稿"
+"横向翻页的网页 PPT"
+```
+
+---
+
+### html-ppt
+**HTML PPT Studio**，36 个主题、31 种布局、15 个完整模板。
+
+**核心能力：**
+- **36 个主题**：minimal-white, editorial-serif, tokyo-night, dracula, catppuccin-latte/mocha, xiaohongshu-white, neo-brutalism, swiss-grid, terminal-green 等
+- **15 个完整模板**：pitch-deck, product-launch, tech-sharing, weekly-report, xhs-post, presenter-mode-reveal 等
+- **31 种布局**：标题页、图文混排、数据展示、对比页等
+- **27 个 CSS 动画** + **20 个 Canvas FX 动画**
+- **演讲者模式**：按 S 键打开，显示当前/下一页预览、逐字稿、计时器
+
+**演讲者模式特性：**
+- CURRENT/NEXT 预览：像素级精确的 iframe 预览
+- SPEAKER SCRIPT：大字体逐字稿（可滚动）
+- TIMER：计时器 + 页码 + 前后/重置按钮
+- 卡片可拖拽、可调整大小，位置持久化
+
+**工作流：**
+```
+1. 确认内容 → 主题、页数、受众
+2. 选择风格 → 从 36 个主题中选
+3. 选择模板 → 从 15 个完整模板中选择
+4. 填充内容 → 替换 demo 数据
+5. 添加动画 → data-anim 属性
+```
+
+**触发方式：**
+```
+"做一份技术分享 PPT"
+"产品发布会演示文稿"
+"小红书风格的图文"
+"带演讲者模式的 PPT"
+```
+
+---
+
 ### docx
 **Word 文档创建与编辑**。
 
@@ -642,7 +710,9 @@ defuddle parse <url> -p title       # 提取标题
 | 写前端测试 | `frontend-testing` / `tdd-workflow` |
 | 代码审查 | `code-review-excellence` |
 | **文档创作** | |
-| 做演示文稿 | `frontend-slides` |
+| 做演示文稿 | `frontend-slides` / `guizang-ppt` / `html-ppt` |
+| PPT 演示文稿（杂志风） | `guizang-ppt` |
+| PPT 演示文稿（多主题） | `html-ppt` |
 | 写 README | `readme-generation` |
 | 生成更新日志 | `changelog-generator` |
 | 创建 Word 文档 | `docx` |
